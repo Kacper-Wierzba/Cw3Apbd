@@ -31,32 +31,22 @@ public abstract class Kontener
         return ("KON-"+Type+"-"+Kontener.nextNum);
     }
     
-    private static int nextNum
-    {
-        set
-        {
-            throw new Exception("cant change automated field");
-        }
-        get
-        {
-            return nextnum++;
-        }
-    }
-    
-    abstract public void Empty();
-    abstract protected void Zaladunek(Cargo cargo);
+    private static int nextNum => nextnum++;
 
+    public abstract void Empty();
+    
     private void DontOverflow()
     {
         if(MassOfCargo>MaxVolumeInKg)
             throw new OverfillException("Maximum volume is " + MaxVolumeInKg);
     }
     
-    public void Fill(Cargo cargo)
+    protected void BaseFillLogic(float Mass)
     {
-        MassOfCargo=cargo.Mass;
+        MassOfCargo+=Mass;
         DontOverflow();
-        Zaladunek(cargo);
     }
+    
+    
     
 }

@@ -1,7 +1,11 @@
 ﻿namespace ConsoleApp1;
 
 
-public class KontenerPlyn(float massOfContainer, float height, float depth, float maxVolumeInKg)
+public class KontenerPlyn(
+    float massOfContainer,
+    float height,
+    float depth,
+    float maxVolumeInKg)
     : Kontener('L', massOfContainer, height, depth, maxVolumeInKg), IHazardNotifier
 {
     
@@ -10,14 +14,16 @@ public class KontenerPlyn(float massOfContainer, float height, float depth, floa
         MassOfCargo = 0;
     }
     
-    protected override void Zaladunek(Cargo cargo)
+    public void Fill(string type, float mass, bool hazard)
     {
-        if((cargo.Hazardous && cargo.Mass > maxVolumeInKg*0.5) || cargo.Mass > maxVolumeInKg*0.9)
+        BaseFillLogic(mass);
+        if((hazard && mass > maxVolumeInKg*0.5) || mass > maxVolumeInKg*0.9)
             NotifyOfRisk(id:this.SerialNumber);
     }
+    
 
     public void NotifyOfRisk(string id)
     {
-        Console.WriteLine("Risky operation detected at : " + id);
+        Console.WriteLine(id+" was assigned cargo with too much volume");
     }
 }
