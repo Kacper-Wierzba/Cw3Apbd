@@ -3,13 +3,12 @@
 
 public abstract class Kontener
 {
-    public float MassWithCargo{set; get;}
-    public float MassOfContainer{set; get;}
-    public float Height{set; get;}
-    public float Depth{set; get;}
-    public float MaxVolumeInKg{set; get;}
-
-    public Char Type { get; }
+    public required float MassWithCargo{set; get;}
+    public required float MassOfContainer{set; get;}
+    public required float Height{set; get;}
+    public required float Depth{set; get;}
+    public required float MaxVolumeInKg{set; get;}
+    public Char  Type { get;}
     
     public String SerialNumber { get; }
 
@@ -28,7 +27,7 @@ public abstract class Kontener
     {
         set
         {
-            throw new Exception("cant change automated filed");
+            throw new Exception("cant change automated field");
         }
         get
         {
