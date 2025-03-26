@@ -38,7 +38,7 @@ public abstract class Kontener
     private void DontOverflow()
     {
         if(MassOfCargo>MaxVolumeInKg)
-            throw new OverfillException("Maximum volume is " + MaxVolumeInKg);
+            throw new OverfillException("Maximum volume: " + MaxVolumeInKg+" was exceeded");
     }
     
     protected void BaseFillLogic(float Mass)
@@ -46,7 +46,9 @@ public abstract class Kontener
         MassOfCargo+=Mass;
         DontOverflow();
     }
-    
-    
-    
+
+    public override string ToString()
+    {
+        return SerialNumber + " mass of cargo: " + MassOfCargo + " max volume: "+MaxVolumeInKg+" mass of bare container: " + MassOfContainer + " depth: "+Depth+" height: "+Height;
+    }
 }
