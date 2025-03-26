@@ -3,19 +3,27 @@
 
 public abstract class Kontener
 {
-    public required float MassWithCargo{set; get;}
-    public required float MassOfContainer{set; get;}
-    public required float Height{set; get;}
-    public required float Depth{set; get;}
-    public required float MaxVolumeInKg{set; get;}
+    private static int nextnum = 1;
+    public float MassWithCargo{set; get;}
+    public float MassOfContainer{set; get;}
+    public float Height{set; get;}
+    public float Depth{set; get;}
+    public float MaxVolumeInKg{set; get;}
     public Char  Type { get;}
     
     public String SerialNumber { get; }
 
-    protected Kontener(char type)
+    protected Kontener(char type, float massOfContainer, float height, float depth, float maxVolumeInKg)
     {
         Type = type;
         SerialNumber = CreateSerialNumber();
+        
+        
+        this.MassWithCargo = massOfContainer;
+        this.MassOfContainer = massOfContainer;
+        this.Height = height;
+        this.Depth = depth;
+        this.MaxVolumeInKg = maxVolumeInKg;
     }
     
     private string CreateSerialNumber()
@@ -31,7 +39,7 @@ public abstract class Kontener
         }
         get
         {
-            return nextNum++;
+            return nextnum++;
         }
     }
     

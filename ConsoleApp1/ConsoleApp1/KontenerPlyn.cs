@@ -1,15 +1,9 @@
 ﻿namespace ConsoleApp1;
 
 
-public class KontenerPlyn : Kontener
+public class KontenerPlyn(float massOfContainer, float height, float depth, float maxVolumeInKg)
+    : Kontener('L', massOfContainer, height, depth, maxVolumeInKg)
 {
-    public KontenerPlyn(float massOfContainer, float height, float depth, float maxVolumeInKg) : base('L')
-    {
-        MassOfContainer = massOfContainer;
-        Height = height;
-        Depth = depth;
-        MaxVolumeInKg = maxVolumeInKg;
-    }
     
     public override void Empty()
     {
