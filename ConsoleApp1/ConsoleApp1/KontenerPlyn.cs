@@ -17,6 +17,7 @@ public class KontenerPlyn(
     public void Fill(string type, float mass, bool hazard)
     {
         BaseFillLogic(mass);
+        mass = MassOfCargo;
         if((hazard && mass > maxVolumeInKg*0.5) || mass > maxVolumeInKg*0.9)
             NotifyOfRisk(id:this.SerialNumber);
     }

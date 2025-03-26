@@ -9,6 +9,7 @@ public class KontenerGaz(
     : Kontener('G', massOfContainer, height, depth, maxVolumeInKg), IHazardNotifier
 {
     public float Pressure{set; get;} = maxPressure;
+    public float pressurenow=0;
 
     public override void Empty()
     {
@@ -18,8 +19,10 @@ public class KontenerGaz(
     public void Fill(string type, float mass, float pressure)
     {
         BaseFillLogic(mass);
-        if(pressure>Pressure)
+        var pres = pressure + pressurenow;
+        if(pres>Pressure)
             NotifyOfRisk(this.SerialNumber);
+        pressurenow += pressure;
     }
 
     public void NotifyOfRisk(string id)

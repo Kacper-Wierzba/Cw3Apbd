@@ -58,6 +58,7 @@ public class Kontenerowiec(float maxSpeed, float maxVolumeOfContainers, float ma
     {
         StringBuilder sb = new();
         sb.AppendLine("Kontenerowiec: Maxspeed: "+maxSpeed+" MaxVolumeOfContainers: "+MaxVolumeOfContainers+" MaxMassOfContainers: "+MaxMassOfContainers);
+        sb.AppendLine("cargo: ");
         foreach (var kontener in kontenery)
         {
             sb.AppendLine(kontener.ToString());
