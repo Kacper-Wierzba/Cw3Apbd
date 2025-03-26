@@ -2,16 +2,22 @@
 
 
 public class KontenerPlyn(float massOfContainer, float height, float depth, float maxVolumeInKg)
-    : Kontener('L', massOfContainer, height, depth, maxVolumeInKg)
+    : Kontener('L', massOfContainer, height, depth, maxVolumeInKg), IHazardNotifier
 {
     
     public override void Empty()
     {
-        throw new NotImplementedException();
+        MassOfCargo = 0;
     }
     
     protected override void Zaladunek(Cargo cargo)
     {
-        MassWithCargo += cargo.Mass;
+        if((cargo.Hazardous && cargo.Mass > maxVolumeInKg*0.5) || cargo.Mass > maxVolumeInKg*0.9)
+            NotifyOfRisk(id:this.SerialNumber);
+    }
+
+    public void NotifyOfRisk(string id)
+    {
+        Console.WriteLine("Risky operation detected at : " + id);
     }
 }

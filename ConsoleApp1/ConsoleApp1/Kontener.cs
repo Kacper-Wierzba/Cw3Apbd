@@ -4,7 +4,7 @@
 public abstract class Kontener
 {
     private static int nextnum = 1;
-    public float MassWithCargo{set; get;}
+    public float MassOfCargo{set; get;}
     public float MassOfContainer{set; get;}
     public float Height{set; get;}
     public float Depth{set; get;}
@@ -19,7 +19,7 @@ public abstract class Kontener
         SerialNumber = CreateSerialNumber();
         
         
-        this.MassWithCargo = massOfContainer;
+        this.MassOfCargo = 0;
         this.MassOfContainer = massOfContainer;
         this.Height = height;
         this.Depth = depth;
@@ -48,13 +48,13 @@ public abstract class Kontener
 
     private void DontOverflow()
     {
-        if(MassWithCargo>MaxVolumeInKg)
+        if(MassOfCargo>MaxVolumeInKg)
             throw new OverfillException("Maximum volume is " + MaxVolumeInKg);
     }
     
     public void Fill(Cargo cargo)
     {
-        MassWithCargo+=cargo.Mass;
+        MassOfCargo=cargo.Mass;
         DontOverflow();
         Zaladunek(cargo);
     }
