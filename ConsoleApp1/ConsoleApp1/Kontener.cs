@@ -46,15 +46,16 @@ public abstract class Kontener
     abstract public void Empty();
     abstract protected void Zaladunek(Cargo cargo);
 
-    private void DontOverflow(float Mass)
+    private void DontOverflow()
     {
-        if(Mass>MaxVolumeInKg)
+        if(MassWithCargo>MaxVolumeInKg)
             throw new OverfillException("Maximum volume is " + MaxVolumeInKg);
     }
     
     public void Fill(Cargo cargo)
     {
-        DontOverflow(cargo.Mass);
+        MassWithCargo+=cargo.Mass;
+        DontOverflow();
         Zaladunek(cargo);
     }
     
